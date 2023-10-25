@@ -6,7 +6,8 @@
     Array.prototype.slice.call(forms)
       .forEach(function (form) {
         form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
+          let terminosValid = validacionTerminos();
+          if (!form.checkValidity() || !terminosValid) {
             event.preventDefault()
             event.stopPropagation()
           } 
@@ -41,14 +42,17 @@
       
     };
     
-    document.getElementById("terminos").addEventListener("change",validacionTerminos);
     function validacionTerminos (){
-      let termsandconditions = document.getElementById("terminos");
-       if(termsandconditions.checked){
-        termsandconditions.setCustomValidity('');
-       }else{
-        termsandconditions.setCustomValidity('todo mal');
-       }
+      let terminos = document.getElementById("terminos");
+      if (!terminos.checked){
+        document.getElementById("feedback-modal-terminos").style.display = "inline";
+        document.getElementById("btn-modal-terminos").style.display = "inline";
+      }
+      else{
+        document.getElementById("feedback-modal-terminos").style.display = "none";
+        document.getElementById("btn-modal-terminos").style.display = "none";
+      }
+      return terminos.checked;
     };
 
 })()
