@@ -47,10 +47,12 @@
       if (!terminos.checked){
         document.getElementById("feedback-modal-terminos").style.display = "inline";
         document.getElementById("btn-modal-terminos").style.display = "inline";
+        document.getElementById("botoncito").style.color = "red";
       }
       else{
         document.getElementById("feedback-modal-terminos").style.display = "none";
         document.getElementById("btn-modal-terminos").style.display = "none";
+        document.getElementById("botoncito").style.color = "";
       }
       return terminos.checked;
     };
